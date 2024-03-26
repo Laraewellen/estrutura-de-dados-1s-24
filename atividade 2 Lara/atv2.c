@@ -1,18 +1,17 @@
-#include <stdio.h>
+#include <stdim.h>
 #include <stdlib.h>
-#include <stdbool.h>
+#include <stdbool.h> //bibloteca para adc a função booleana que vamos usar para saber se é 0 ou 1(verdadeiro ou falso)
 
-// Função para verificar se um número é primo
-bool ehPrimo(int num) {
+bool P(int num) { //função para ver se é primo
     if (num <= 1) {
-        return false; // Números menores ou iguais a 1 não são primos
+        return false;
     }
     for (int i = 2; i * i <= num; i++) {
         if (num % i == 0) {
-            return false; // Se o número for divisível por algum número até a raiz quadrada dele, não é primo
+            return false; 
         }
     }
-    return true; // Se não foi encontrado nenhum divisor até a raiz quadrada do número, então é primo
+    return true; 
 }
 
 int main(int argc, char *argv[]) {
@@ -23,7 +22,7 @@ int main(int argc, char *argv[]) {
 
     int numero = atoi(argv[1]);
 
-    if (ehPrimo(numero)) {
+    if (P(numero)) {
         printf("true\n");
     } else {
         printf("false\n");
