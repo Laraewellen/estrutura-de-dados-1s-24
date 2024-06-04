@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "queue.h"
 
 void enqueue(QueueNode** root, char data){
@@ -11,23 +12,52 @@ void enqueue(QueueNode** root, char data){
     }
     else{
         QueueNode* tmp = (*root)->next;
-    while (tmp-> next == NULL){
-        if(tmp != NULL && tmp->next == NULL){
-            tmp->next = qNode;
+        if(tmp == NULL){
+            (*root)->next = qNode;
         }
         else{
-            tmp = tmp->next;
+            do{
+                if(tmp->next == NULL){
+                    tmp->next = qNode;
+                }
+                else{
+                    tmp = tmp->next;
+                }
+            } while(tmp->next != NULL);
         }
-    } 
     }
 }
+
+char dequeue(QueueNode** root){
+    if(isEmpty(*root)){
+        return CHAR_MIN;
+    }
+    else{
+        QueueNode* tmp = *root;
+        *root = tmp->next;
+        char tmpData = tmp->data;
+        free(tmp);
+        return tmpData;
+    }
 }
 
-char dequeue(QueueNode** root)
-char peek(QueueNode* root)
+char peek(QueueNode* root){
+    if(isEmpty(root)){
+        return CHAR_MIN;
+    }
+    else{
+        return root->data;
+    }
+}
 
 int isEmpty(QueueNode* root){
     return root == NULL;
 }
 
-void display(QueueNode* root)
+void display(QueueNode* root){
+    QueueNode* tmp = root;
+    while(tmp != NULL){
+        printf("%c <- ", tmp->data);
+        tmp = tmp->next;
+    }
+}
