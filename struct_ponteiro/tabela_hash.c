@@ -5,7 +5,7 @@
 #include "tabela_hash_h"
 
 int hash(char* chave){
-    return toupper(chave[0])-65
+    return toupper(chave[0])-65 +;
 }
 
 char** tabela_hash(){
